@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="{{ path('home') }}">Project manager</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav mr-auto">
+                <li {% if app.request.get('_route') == 'greeting' %} class="nav-item active"{% else %}class="nav-item"{% endif %}>
+                    <a class="nav-link" href="{{ path('greeting') }}">Greeting</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('greeting') }}">You logged as {{ app.user.name }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('logout') }}">Logout</a>
+                    </li>
+                {% else %}
+                    <li {% if app.request.get('_route') == 'login' %} class="nav-item active"{% else %}class="nav-item"{% endif %}>
+                        <a class="nav-link" href="{{ path('login') }}">Login</a>
+                    </li>
+                    <li {% if app.request.get('_route') == 'register' %} class="nav-item active"{% else %}class="nav-item"{% endif %}>
+                        <a class="nav-link" href="{{ path('register') }}">Registration</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
