@@ -2,7 +2,10 @@
 
 namespace App\Entity;
 
+use App\Repository\UserRepository;
+use Doctrine\Bundle\DoctrineBundle\Registry;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -18,7 +21,12 @@ class Project
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", nullable=false)
+     */
+    private $name;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $Owner;
 
@@ -28,9 +36,15 @@ class Project
     private $creatingDate;
 
     /**
-     * @ORM\ManyToMany(targetEntity="User", mappedBy="members")
+     * @var Collection|User[]
+     *
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="projects")
+     * @ORM\JoinTable(name="project_users",
+     *     joinColumns={@ORM\JoinColumn(name="project_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id", unique=true)}
+     *     )
      */
-    private $members = [];
+    private $members;
 
     /**
      * @ORM\Column(type="array", nullable=true)
@@ -40,6 +54,7 @@ class Project
     public function __construct()
     {
         $this->members = new ArrayCollection();
+        $this->tasks = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -52,7 +67,7 @@ class Project
         return $this->Owner;
     }
 
-    public function setOwner(int $Owner): self
+    public function setOwner($Owner): self
     {
         $this->Owner = $Owner;
 
@@ -71,19 +86,19 @@ class Project
         return $this;
     }
 
-    public function getMembers(): ?array
+    public function getMembers(): ?ArrayCollection
     {
         return $this->members;
     }
 
-    public function setMembers(array $members): self
+    public function setMembers(ArrayCollection $members): self
     {
         $this->members = $members;
 
         return $this;
     }
 
-    public function getTasks(): ?array
+    public function getTasks(): ?iterable
     {
         return $this->tasks;
     }
@@ -91,6 +106,25 @@ class Project
     public function setTasks(?array $tasks): self
     {
         $this->tasks = $tasks;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     * @return self
+     */
+    public function setName(string $name): self
+    {
+        $this->name = $name;
 
         return $this;
     }

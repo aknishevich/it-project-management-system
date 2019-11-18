@@ -7,5 +7,11 @@
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/var/data.db</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="data.db" uuid="443d0b40-37b3-477c-bcd2-a9119a5b1720">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$USER_HOME$/AppData/Roaming/ViberPC/380982939668/data.db</jdbc-url>
+    </data-source>
   </component>
 </project>

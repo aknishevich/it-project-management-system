@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -31,8 +32,9 @@ class User implements UserInterface
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Project", inversedBy="members")
-     * @ORM\JoinTable("projects_members")
+     * @var Collection|Project[]
+     *
+     * @ORM\ManyToMany(targetEntity="Project", mappedBy="members")
      */
     private $projects;
 
@@ -140,5 +142,24 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getProjects(): ArrayCollection
+    {
+        return $this->projects;
+    }
+
+    /**
+     * @param ArrayCollection $projects
+     * @return self
+     */
+    public function setProjects(ArrayCollection $projects): self
+    {
+        $this->projects = $projects;
+
+        return $this;
     }
 }

@@ -7,9 +7,14 @@
 
         <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav mr-auto">
-                <li {% if app.request.get('_route') == 'greeting' %} class="nav-item active"{% else %}class="nav-item"{% endif %}>
-                    <a class="nav-link" href="{{ path('greeting') }}">Greeting</a>
-                </li>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <li {% if app.request.get('_route') == 'greeting' %} class="nav-item active"{% else %}class="nav-item"{% endif %}>
+                        <a class="nav-link" href="{{ path('greeting') }}">Greeting</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('project_list') }}">Projects</a>
+                    </li>
+                {% endif %}
             </ul>
             <ul class="navbar-nav ml-auto">
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}

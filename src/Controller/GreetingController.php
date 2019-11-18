@@ -23,7 +23,7 @@ class GreetingController extends AbstractController
      */
     public function greeting(UserRepository $userRepository)
     {
-        $userName = $userRepository->findOneBy(['email' => 'knishevich@gmail.com'])->getName();
+        $userName = $userRepository->findOneBy(['email' => 'aknishevich@gmail.com'])->getName();
         return $this->render('greeting/greeting.html.twig', ['searchUser' => $userName]);
     }
 }
