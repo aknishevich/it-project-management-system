@@ -10,7 +10,7 @@
             <tr>
                 <th>Id</th>
                 <th>Name</th>
-                <th>Owner</th>
+                <th>Author</th>
                 <th>CreatingDate</th>
                 <th>Tasks</th>
                 <th>actions</th>
@@ -21,7 +21,7 @@
             <tr>
                 <td>{{ project.id }}</td>
                 <td>{{ project.name }}</td>
-                <td>{{ project.Owner }}</td>
+                <td>{{ project.author }}</td>
                 <td>{{ project.creatingDate ? project.creatingDate|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ project.tasks ? project.tasks|join(', ') : '' }}</td>
                 <td>

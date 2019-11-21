@@ -34,7 +34,6 @@
     <index id="15" parent="6" name="sqlite_autoindex_migration_versions_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>version</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <key id="16" parent="6">
@@ -91,16 +90,13 @@
       <NameSurrogate>1</NameSurrogate>
       <ColNames>project_id
 user_id</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <index id="27" parent="8" name="IDX_B4021E51166D1F9C">
       <ColNames>project_id</ColNames>
-      <ColumnCollations></ColumnCollations>
     </index>
     <index id="28" parent="8" name="IDX_B4021E51A76ED395">
       <ColNames>user_id</ColNames>
-      <ColumnCollations></ColumnCollations>
     </index>
     <key id="29" parent="8">
       <ColNames>project_id
@@ -162,7 +158,6 @@ user_id</ColNames>
     </column>
     <index id="42" parent="11" name="UNIQ_8D93D649E7927C74">
       <ColNames>email</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <key id="43" parent="11">
@@ -183,16 +178,13 @@ user_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ColNames>user_id
 project_id</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <index id="47" parent="12" name="IDX_77BECEE4A76ED395">
       <ColNames>user_id</ColNames>
-      <ColumnCollations></ColumnCollations>
     </index>
     <index id="48" parent="12" name="IDX_77BECEE4166D1F9C">
       <ColNames>project_id</ColNames>
-      <ColumnCollations></ColumnCollations>
     </index>
     <key id="49" parent="12">
       <ColNames>user_id

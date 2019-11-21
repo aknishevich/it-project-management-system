@@ -26,9 +26,11 @@ class Project
     private $name;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @var User
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="projects")
+     * @ORM\JoinColumn(name="author_id", referencedColumnName="id")
      */
-    private $Owner;
+    private $author;
 
     /**
      * @ORM\Column(type="datetime")
@@ -62,14 +64,14 @@ class Project
         return $this->id;
     }
 
-    public function getOwner(): ?int
+    public function getAuthor(): ?User
     {
-        return $this->Owner;
+        return $this->author;
     }
 
-    public function setOwner($Owner): self
+    public function setAuthor(User $author): self
     {
-        $this->Owner = $Owner;
+        $this->author = $author;
 
         return $this;
     }
@@ -86,12 +88,12 @@ class Project
         return $this;
     }
 
-    public function getMembers(): ?ArrayCollection
+    public function getMembers(): ?Collection
     {
         return $this->members;
     }
 
-    public function setMembers(ArrayCollection $members): self
+    public function setMembers(Collection $members): self
     {
         $this->members = $members;
 

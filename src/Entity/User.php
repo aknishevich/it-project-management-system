@@ -34,7 +34,7 @@ class User implements UserInterface
     /**
      * @var Collection|Project[]
      *
-     * @ORM\ManyToMany(targetEntity="Project", mappedBy="members")
+     * @ORM\OneToMany(targetEntity="Project", mappedBy="author")
      */
     private $projects;
 
@@ -52,6 +52,11 @@ class User implements UserInterface
     public function __construct()
     {
         $this->projects = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return (string)$this->name;
     }
 
     public function getId(): ?int
@@ -147,16 +152,16 @@ class User implements UserInterface
     /**
      * @return ArrayCollection
      */
-    public function getProjects(): ArrayCollection
+    public function getProjects(): Collection
     {
         return $this->projects;
     }
 
     /**
-     * @param ArrayCollection $projects
+     * @param Collection $projects
      * @return self
      */
-    public function setProjects(ArrayCollection $projects): self
+    public function setProjects(Collection $projects): self
     {
         $this->projects = $projects;
 

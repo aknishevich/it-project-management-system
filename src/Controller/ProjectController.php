@@ -44,14 +44,16 @@ class ProjectController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
 
-            $ownerId = $this->getUser()->id ?? null;
+            $author = $this->getUser() ?? null;
             $currentDate = new DateTimeImmutable('now');
 
-            $project->setOwner($ownerId);
+            $project->setAuthor($author);
             $project->setCreatingDate($currentDate);
 
             $entityManager->persist($project);
             $entityManager->flush();
+
+            $this->addFlash('success','Project was created successfully!');
 
             return $this->redirectToRoute('project_list');
         }
