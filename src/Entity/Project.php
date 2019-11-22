@@ -28,7 +28,6 @@ class Project
     /**
      * @var User
      * @ORM\ManyToOne(targetEntity="User", inversedBy="projects")
-     * @ORM\JoinColumn(name="author_id", referencedColumnName="id")
      */
     private $author;
 
