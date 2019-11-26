@@ -49,6 +49,11 @@ class Board
         $this->members = new ArrayCollection();
     }
 
+    public function __toString(): string
+    {
+        return "($this->id).$this->name";
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -112,6 +117,32 @@ class Board
     public function setMembers(Collection $members): self
     {
         $this->members = $members;
+
+        return $this;
+    }
+
+    /**
+     * Add new member to board
+     * @param User $user
+     * @return $this
+     */
+    public function addMember(User $user): self
+    {
+        $this->members->add($user);
+
+        return $this;
+    }
+
+    /**
+     * Remove member from board
+     * @param User $user
+     * @return $this
+     */
+    public function removeMember(User $user): self
+    {
+        if ($this->members->contains($user)) {
+            $this->members->removeElement($user);
+        }
 
         return $this;
     }

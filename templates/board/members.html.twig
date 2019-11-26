@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Add member to {{ board.name }} board{% endblock %}
+
+{% block body %}
+
+    <h1>Add member to "{{ board.name }}" board</h1>
+
+    {{ form_start(membersForm) }}
+        {{ form_widget(membersForm) }}
+        <button class="btn btn-success">Add member</button>
+    {{ form_end(membersForm) }}
+
+{% endblock %}

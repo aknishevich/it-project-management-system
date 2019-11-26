@@ -2,19 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3e49accb-0d6e-41b3-b85b-7e5ce2f36b79" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1ff9c7f1-b8e1-422f-a0e0-8facc5237390.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/project-manager.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/project-manager.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Form/BoardMembersFormType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/board/_delete_form_member.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/board/members.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/BoardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/BoardController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Board.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Board.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/BoardRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/BoardRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/UserRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/UserRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/navigation.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/navigation.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/board/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/board/show.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -232,7 +228,8 @@
       <workItem from="1574684435987" duration="7834000" />
       <workItem from="1574711593014" duration="6045000" />
       <workItem from="1574756763327" duration="1714000" />
-      <workItem from="1574758528873" duration="13635000" />
+      <workItem from="1574758528873" duration="22791000" />
+      <workItem from="1574800341426" duration="1205000" />
     </task>
     <servers />
   </component>
@@ -260,12 +257,19 @@
           <line>44</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/src/Controller/BoardController.php</url>
+          <line>161</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
       <configuration name="router.php">
         <watch expression="$this-&gt;userRepository-&gt;find($member)" />
         <watch expression="$users[0]" language="PHP" />
+        <watch expression="$request-&gt;request-&gt;get('_token')" />
+        <watch expression="'delete'.$member-&gt;getId()" />
       </configuration>
     </watches-manager>
   </component>

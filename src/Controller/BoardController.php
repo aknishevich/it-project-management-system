@@ -4,8 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Board;
 use App\Entity\User;
+use App\Form\BoardMembersFormType;
 use App\Form\BoardType;
 use App\Repository\BoardRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,6 +20,12 @@ use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
  */
 class BoardController extends AbstractController
 {
+    private $userRepository;
+
+    public function __construct(UserRepository $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
 
     /**
      * @Route("/", name="board_index", methods={"GET"})
@@ -108,6 +116,59 @@ class BoardController extends AbstractController
         if ($this->isCsrfTokenValid('delete'.$board->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($board);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('board_index');
+    }
+
+    /**
+     * @Route("/{id}/member", name="add_member", methods={"GET","POST"})
+     */
+    public function addMember(Request $request, Board $board)
+    {
+        if (!$this->getUser()->isBoardAvailable($board)) {
+            throw new AccessDeniedException('You do not have permissions to add members on this board');
+        }
+
+        $membersForm = $this->createForm(BoardMembersFormType::class);
+        $membersForm->handleRequest($request);
+
+        if ($membersForm->isSubmitted() && $membersForm->isValid()) {
+            $data = $membersForm->getData();
+            $memberEmail = $data['email'];
+            $member = $this->userRepository->findOneBy(['email' => $memberEmail]);
+            if ($member) {
+                $board->addMember($member);
+            }
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($board);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('board_index');
+        }
+
+        return $this->render('board/members.html.twig', [
+            'board' => $board,
+            'membersForm' => $membersForm->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/{id}/member/{memberId}", name="member_delete", methods={"DELETE"})
+     */
+    public function deleteMember(Request $request, Board $board, int $memberId)
+    {
+        if (!$this->getUser()->isBoardAvailable($board)) {
+            throw new AccessDeniedException('You do not have permissions to remove members on this board');
+        }
+
+        $member = $this->userRepository->find($memberId);
+
+        if ($this->isCsrfTokenValid('delete'.$board->getId().$member->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $board->removeMember($member);
+            $entityManager->persist($board);
             $entityManager->flush();
         }
 

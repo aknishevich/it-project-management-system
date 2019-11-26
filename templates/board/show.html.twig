@@ -15,8 +15,36 @@
     <span>Author - <strong>{{ board.author }}</strong></span>
 
     <hr>
-    <p class="lead">{{ board.description }}</p>
+
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#description">Description</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#members">Members</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div id="description" class="container tab-pane active"><br>
+            <p>{{ board.description }}</p>
+        </div>
+        <div id="members" class="container tab-pane fade"><br>
+            {% for member in board.members %}
+                <p>
+                    <strong>{{ member }}</strong>
+                    <div class="float-right">
+                        {{ include('board/_delete_form_member.html.twig') }}
+                    </div>
+                </p>
+            {% endfor %}
+            <a href="{{ board.id }}/member">
+                Add member <i class="fas fa-user-plus"></i>
+            </a>
+        </div>
+    </div>
+
     <hr>
+
     <a href="{{ path('board_index') }}">back to list</a>
 
 {% endblock %}

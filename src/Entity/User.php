@@ -205,7 +205,9 @@ class User implements UserInterface
      */
     public function getAvailableBoards(): ?Collection
     {
-        return new ArrayCollection(array_merge($this->ownBoards->toArray(), $this->boards->toArray()));
+        $mergedBoards = array_merge($this->ownBoards->toArray(), $this->boards->toArray());
+        $availableBoards = array_unique($mergedBoards);
+        return new ArrayCollection($availableBoards);
     }
 
     /**
