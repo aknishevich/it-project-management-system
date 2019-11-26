@@ -2,19 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3e49accb-0d6e-41b3-b85b-7e5ce2f36b79" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1ff9c7f1-b8e1-422f-a0e0-8facc5237390.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/1ff9c7f1-b8e1-422f-a0e0-8facc5237390.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1ff9c7f1-b8e1-422f-a0e0-8facc5237390.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/project-manager.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/project-manager.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ProjectController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ProjectController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Project.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Project.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Board.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Board.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/ProjectType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/ProjectType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20191117195706.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/BoardRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/BoardRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/UserRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/UserRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/project/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/project/edit.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/project/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/project/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/project/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/project/show.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/navigation.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/navigation.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -39,7 +39,23 @@
     <option name="HIDDEN_KINDS">
       <set />
     </option>
-    <expand />
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="data.db" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="data.db" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="data.db" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="main: schema" type="981a47c2:SqliteImplModel$Schema" />
+      </path>
+    </expand>
     <select />
   </component>
   <component name="Git.Settings">
@@ -47,7 +63,11 @@
   </component>
   <component name="PhpServers">
     <servers>
-      <server host="127.0.0.1" id="b4273d82-4c0b-4602-8da0-cb44202cd577" name="Localhost" port="8000" />
+      <server host="127.0.0.1" id="b4273d82-4c0b-4602-8da0-cb44202cd577" name="Localhost" port="8000" use_path_mappings="true">
+        <path_mappings>
+          <mapping local-root="$PROJECT_DIR$" remote-root="D:/web/project-manager" />
+        </path_mappings>
+      </server>
     </servers>
   </component>
   <component name="PhpWebServerValidation" path_to_validation_script="D:\web\project-manager" selected_validation_type="LOCAL" web_path_to_validation_script="http://localhost:8000/" />
@@ -156,7 +176,6 @@
       <path value="$PROJECT_DIR$/vendor/doctrine/migrations" />
       <path value="$PROJECT_DIR$/vendor/doctrine/orm" />
       <path value="$PROJECT_DIR$/vendor/doctrine/dbal" />
-      <path value="$PROJECT_DIR$/vendor/doctrine/doctrine-cache-bundle" />
       <path value="$PROJECT_DIR$/vendor/doctrine/persistence" />
     </include_path>
   </component>
@@ -166,7 +185,7 @@
     <property name="DatabaseDriversLRU" value="sqlite" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/var/data.db" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="settings.php.debug.servers" />
   </component>
@@ -209,6 +228,11 @@
       <workItem from="1574198058441" duration="2340000" />
       <workItem from="1574336750436" duration="7019000" />
       <workItem from="1574373312839" duration="3192000" />
+      <workItem from="1574514568685" duration="603000" />
+      <workItem from="1574684435987" duration="7834000" />
+      <workItem from="1574711593014" duration="6045000" />
+      <workItem from="1574756763327" duration="1714000" />
+      <workItem from="1574758528873" duration="13635000" />
     </task>
     <servers />
   </component>
@@ -241,6 +265,7 @@
     <watches-manager>
       <configuration name="router.php">
         <watch expression="$this-&gt;userRepository-&gt;find($member)" />
+        <watch expression="$users[0]" language="PHP" />
       </configuration>
     </watches-manager>
   </component>

@@ -2,11 +2,12 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\ArrayType;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -32,11 +33,19 @@ class User implements UserInterface
     private $name;
 
     /**
-     * @var Collection|Project[]
-     *
-     * @ORM\OneToMany(targetEntity="Project", mappedBy="author")
+     * @var Collection|Board[]
+     * @ORM\ManyToMany(targetEntity="App\Entity\Board", mappedBy="members")
+     * @ORM\JoinTable(name="boards_members",
+     *     joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="board_id", referencedColumnName="id", unique=true)})
      */
-    private $projects;
+    private $boards;
+
+    /**
+     * @var Collection|Board[]
+     * @ORM\OneToMany(targetEntity="App\Entity\Board", mappedBy="author")
+     */
+    private $ownBoards;
 
     /**
      * @ORM\Column(type="json")
@@ -49,9 +58,12 @@ class User implements UserInterface
      */
     private $password;
 
+    private $availableBoards;
+
     public function __construct()
     {
-        $this->projects = new ArrayCollection();
+        $this->boards = new ArrayCollection();
+        $this->ownBoards = new ArrayCollection();
     }
 
     public function __toString()
@@ -150,21 +162,69 @@ class User implements UserInterface
     }
 
     /**
-     * @return ArrayCollection
+     * @return Board[]|Collection
      */
-    public function getProjects(): Collection
+    public function getBoards(): Collection
     {
-        return $this->projects;
+        return $this->boards;
     }
 
     /**
-     * @param Collection $projects
-     * @return self
+     * @param Board[]|Collection $boards
      */
-    public function setProjects(Collection $projects): self
+    public function setBoards(Collection $boards)
     {
-        $this->projects = $projects;
+        $this->boards = $boards;
 
         return $this;
+    }
+
+    /**
+     * @return Board[]|Collection
+     */
+    public function getOwnBoards(): ?Collection
+    {
+        return $this->ownBoards;
+    }
+
+    /**
+     * @param $ownBoards
+     * @return $this
+     */
+    public function setOwnBoards(Collection $ownBoards): self
+    {
+        $this->ownBoards = $ownBoards;
+
+        return $this;
+    }
+
+    /**
+     * Gets all boards which are available for this user
+     * included own boards and boards where this user marked as a member
+     * @return Collection|null
+     */
+    public function getAvailableBoards(): ?Collection
+    {
+        return new ArrayCollection(array_merge($this->ownBoards->toArray(), $this->boards->toArray()));
+    }
+
+    /**
+     * Checks if the user have permissions to view this board
+     * @param Board $board
+     * @return bool
+     */
+    public function isBoardAvailable(Board $board)
+    {
+        return in_array($board,$this->getAvailableBoards()->toArray());
+    }
+
+    /**
+     * Checks if the user is the author of the board
+     * @param Board $board
+     * @return bool
+     */
+    public function isAuthor(Board $board)
+    {
+        return in_array($board, $this->ownBoards->toArray());
     }
 }

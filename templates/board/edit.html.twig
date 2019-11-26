@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Board{% endblock %}
+
+{% block body %}
+    <h1>Edit "{{ board.name }}" board</h1>
+
+    <div class="float-right">
+        {{ include('board/_delete_form.html.twig') }}
+    </div>
+
+    {{ include('board/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('board_index') }}">back to list</a>
+{% endblock %}
