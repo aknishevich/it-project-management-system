@@ -32,12 +32,24 @@ class Board
 
     /**
      * @var Collection|User[]
-     * @ORM\ManyToMany(targetEntity="App\Entity\User")
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="boards")
      * @ORM\JoinTable(name="boards_members",
      *     joinColumns={@ORM\JoinColumn(name="board_id", referencedColumnName="id")},
      *     inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id", unique=true)})
      */
     private $members;
+
+    /**
+     * @var Collection|Task[]
+     * @ORM\OneToMany(targetEntity="Task", mappedBy="board")
+     */
+    private $tasks;
+
+    /**
+     * @var Collection|Column[]
+     * @ORM\OneToMany(targetEntity="Column", mappedBy="board")
+     */
+    private $columns;
 
     /**
      * @ORM\Column(type="text", nullable=true)
@@ -47,6 +59,8 @@ class Board
     public function __construct()
     {
         $this->members = new ArrayCollection();
+        $this->tasks = new ArrayCollection();
+        $this->columns = new ArrayCollection();
     }
 
     public function __toString(): string
@@ -143,6 +157,44 @@ class Board
         if ($this->members->contains($user)) {
             $this->members->removeElement($user);
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Task[]|Collection
+     */
+    public function getTasks(): ?Collection
+    {
+        return $this->tasks;
+    }
+
+    /**
+     * @param Collection $tasks
+     * @return $this
+     */
+    public function setTasks(Collection $tasks): self
+    {
+        $this->tasks = $tasks;
+
+        return $this;
+    }
+
+    /**
+     * @return Column[]|Collection
+     */
+    public function getColumns(): Collection
+    {
+        return $this->columns;
+    }
+
+    /**
+     * @param Collection $columns
+     * @return $this
+     */
+    public function setColumns(Collection $columns): self
+    {
+        $this->columns = $columns;
 
         return $this;
     }

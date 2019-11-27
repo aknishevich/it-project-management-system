@@ -36,6 +36,6 @@ security:
     access_control:
         - { path: ^/greeting, roles: IS_AUTHENTICATED_FULLY }
         - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/project, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/task, roles: IS_AUTHENTICATED_FULLY }
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }

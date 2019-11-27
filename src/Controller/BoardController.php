@@ -157,13 +157,13 @@ class BoardController extends AbstractController
     /**
      * @Route("/{id}/member/{memberId}", name="member_delete", methods={"DELETE"})
      */
-    public function deleteMember(Request $request, Board $board, int $memberId)
+    public function deleteMember(Request $request, Board $board, User $user)
     {
         if (!$this->getUser()->isBoardAvailable($board)) {
             throw new AccessDeniedException('You do not have permissions to remove members on this board');
         }
 
-        $member = $this->userRepository->find($memberId);
+        $member = $user;
 
         if ($this->isCsrfTokenValid('delete'.$board->getId().$member->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();

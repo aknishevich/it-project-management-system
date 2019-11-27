@@ -34,7 +34,7 @@ class User implements UserInterface
 
     /**
      * @var Collection|Board[]
-     * @ORM\ManyToMany(targetEntity="App\Entity\Board", mappedBy="members")
+     * @ORM\ManyToMany(targetEntity="Board", mappedBy="members")
      * @ORM\JoinTable(name="boards_members",
      *     joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
      *     inverseJoinColumns={@ORM\JoinColumn(name="board_id", referencedColumnName="id", unique=true)})
@@ -43,9 +43,21 @@ class User implements UserInterface
 
     /**
      * @var Collection|Board[]
-     * @ORM\OneToMany(targetEntity="App\Entity\Board", mappedBy="author")
+     * @ORM\OneToMany(targetEntity="Board", mappedBy="author")
      */
     private $ownBoards;
+
+    /**
+     * @var Collection|Task[]
+     * @ORM\OneToMany(targetEntity="Task", mappedBy="reporter")
+     */
+    private $reportedTasks;
+
+    /**
+     * @var Collection|Task[]
+     * @ORM\OneToMany(targetEntity="Task", mappedBy="assignee")
+     */
+    private $assignedTasks;
 
     /**
      * @ORM\Column(type="json")
@@ -58,12 +70,11 @@ class User implements UserInterface
      */
     private $password;
 
-    private $availableBoards;
-
     public function __construct()
     {
         $this->boards = new ArrayCollection();
         $this->ownBoards = new ArrayCollection();
+        $this->reportedTasks = new ArrayCollection();
     }
 
     public function __toString()
@@ -187,6 +198,7 @@ class User implements UserInterface
         return $this->ownBoards;
     }
 
+
     /**
      * @param $ownBoards
      * @return $this
@@ -194,6 +206,44 @@ class User implements UserInterface
     public function setOwnBoards(Collection $ownBoards): self
     {
         $this->ownBoards = $ownBoards;
+
+        return $this;
+    }
+
+    /**
+     * @return Task[]|Collection
+     */
+    public function getReportedTasks(): ?Collection
+    {
+        return $this->reportedTasks;
+    }
+
+    /**
+     * @param Collection $reportedTasks
+     * @return $this
+     */
+    public function setReportedTasks(Collection $reportedTasks): self
+    {
+        $this->reportedTasks = $reportedTasks;
+
+        return $this;
+    }
+
+    /**
+     * @return Task[]|Collection
+     */
+    public function getAssignedTasks(): Collection
+    {
+        return $this->assignedTasks;
+    }
+
+    /**
+     * @param Collection $assignedTasks
+     * @return $this
+     */
+    public function setAssignedTasks(Collection $assignedTasks): self
+    {
+        $this->assignedTasks = $assignedTasks;
 
         return $this;
     }
