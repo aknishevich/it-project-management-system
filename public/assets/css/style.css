@@ -1,0 +1,8 @@
+.card a{
+    color: #000;
+    text-decoration: none!important;
+}
+.card:hover {
+    transition: .3s;
+    transform: scale(1.03);
+}

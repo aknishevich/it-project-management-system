@@ -1,0 +1,13 @@
+<div id="members" class="col-4">
+    <h2>Members:</h2>
+    {% for member in board.members %}
+        <p>
+            <strong>{{ member }}</strong>
+            {{ include('board/_delete_form_member.html.twig') }}
+        </p>
+    {% endfor %}
+    <hr>
+    <a href="{{ board.id }}/member">
+        Add member <i class="fas fa-user-plus"></i>
+    </a>
+</div>

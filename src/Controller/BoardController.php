@@ -138,14 +138,17 @@ class BoardController extends AbstractController
             $data = $membersForm->getData();
             $memberEmail = $data['email'];
             $member = $this->userRepository->findOneBy(['email' => $memberEmail]);
-            if ($member) {
-                $board->addMember($member);
-            }
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($board);
-            $entityManager->flush();
 
-            return $this->redirectToRoute('board_index');
+            if ($member && !$member->isBoardAvailable($board)) {
+                $board->addMember($member);
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($board);
+                $entityManager->flush();
+            }
+
+            return $this->redirectToRoute('board_show', [
+                'id' => $board->getId()
+            ]);
         }
 
         return $this->render('board/members.html.twig', [
@@ -157,19 +160,23 @@ class BoardController extends AbstractController
     /**
      * @Route("/{id}/member/{memberId}", name="member_delete", methods={"DELETE"})
      */
-    public function deleteMember(Request $request, Board $board, User $user)
+    public function deleteMember(Request $request, Board $board, int $memberId)
     {
         if (!$this->getUser()->isBoardAvailable($board)) {
             throw new AccessDeniedException('You do not have permissions to remove members on this board');
         }
 
-        $member = $user;
+        $member = $this->userRepository->find($memberId);
 
         if ($this->isCsrfTokenValid('delete'.$board->getId().$member->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $board->removeMember($member);
             $entityManager->persist($board);
             $entityManager->flush();
+
+            return $this->render('board/members/members_block.html.twig', [
+                'board' => $board
+            ]);
         }
 
         return $this->redirectToRoute('board_index');
