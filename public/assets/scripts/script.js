@@ -14,4 +14,38 @@ var removeMember =  function (button) {
             $('#' + replaceBlockId).replaceWith(response);
         });
     }
-}
+};
+var showEditTaskModal = function (button) {
+    var params = button.getAttribute('data-ajax-params'),
+        url = button.getAttribute('data-ajax-url'),
+        replaceBlockId = button.getAttribute('data-ajax-replace-id'),
+        modalTitle = button.getAttribute('data-modal-title');
+
+    $.ajax({
+        type: 'GET',
+        url: url
+    }).done(function(response) {
+        $('.modal-title').html(modalTitle);
+        $('#' + replaceBlockId).html(response);
+        $('#exampleModal').modal('show');
+    });
+};
+var createEditTaskModal = function (button) {
+    var params = button.getAttribute('data-ajax-params'),
+        url = button.getAttribute('data-ajax-url'),
+        replaceBlockId = button.getAttribute('data-ajax-replace-id'),
+        modalTitle = button.getAttribute('data-modal-title'),
+        modalButtonText = button.getAttribute('data-modal-button');
+
+    $.ajax({
+        type: 'GET',
+        url: url
+    }).done(function(response) {
+        $('.modal-title').html(modalTitle);
+        $('#' + replaceBlockId).html(response);
+        $('#exampleModal').modal('show');
+        if(modalButtonText) {
+            $('#modal-button').text(modalButtonText);
+        }
+    });
+};

@@ -22,7 +22,7 @@ class Task
     private $title;
 
     /**
-     * @ORM\Column(type="string", length=3600, nullable=true)
+     * @ORM\Column(type="text", length=3600, nullable=true)
      */
     private $description;
 
@@ -112,23 +112,37 @@ class Task
         return $this;
     }
 
-    public function getBoard(): ?string
+    /**
+     * @return Board|null
+     */
+    public function getBoard(): ?Board
     {
         return $this->board;
     }
 
-    public function setBoard(string $board): self
+    /**
+     * @param Board $board
+     * @return $this
+     */
+    public function setBoard(Board $board): self
     {
         $this->board = $board;
 
         return $this;
     }
 
+    /**
+     * @return Column|null
+     */
     public function getStatus(): ?Column
     {
         return $this->status;
     }
 
+    /**
+     * @param Column $status
+     * @return $this
+     */
     public function setStatus(Column $status): self
     {
         $this->status = $status;

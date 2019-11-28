@@ -7,6 +7,7 @@ use App\Entity\User;
 use App\Form\BoardMembersFormType;
 use App\Form\BoardType;
 use App\Repository\BoardRepository;
+use App\Repository\TaskRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,10 +22,12 @@ use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 class BoardController extends AbstractController
 {
     private $userRepository;
+    private $taskRepository;
 
-    public function __construct(UserRepository $userRepository)
+    public function __construct(UserRepository $userRepository, TaskRepository $taskRepository)
     {
         $this->userRepository = $userRepository;
+        $this->taskRepository = $taskRepository;
     }
 
     /**
@@ -77,6 +80,7 @@ class BoardController extends AbstractController
 
         return $this->render('board/show.html.twig', [
             'board' => $board,
+            'tasks' => $this->taskRepository->findBy(['board' => $board->getId()])
         ]);
     }
 

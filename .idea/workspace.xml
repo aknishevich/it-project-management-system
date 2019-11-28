@@ -2,16 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3e49accb-0d6e-41b3-b85b-7e5ce2f36b79" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/assets/css/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/scripts/script.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/board/members/members_block.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/board/tasks/tasks_table.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/scripts/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/scripts/script.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/BoardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/BoardController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/TaskController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TaskController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Column.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Column.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Task.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Task.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/TaskType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/TaskType.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/board/_delete_form_member.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/board/_delete_form_member.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/board/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/board/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/board/members.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/board/members.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/board/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/board/show.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/task/_delete_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/task/_delete_form.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/task/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/task/_form.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/task/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/task/edit.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/task/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/task/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/task/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/task/new.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/task/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/task/show.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -58,6 +66,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="PhpDebugGeneral" listening_started="true" />
   <component name="PhpServers">
     <servers>
       <server host="127.0.0.1" id="b4273d82-4c0b-4602-8da0-cb44202cd577" name="Localhost" port="8000" use_path_mappings="true">
@@ -182,9 +191,10 @@
     <property name="DatabaseDriversLRU" value="sqlite" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="database.data.extractors.current.id" value="SQL Inserts" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.tabs" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -232,7 +242,9 @@
       <workItem from="1574758528873" duration="22791000" />
       <workItem from="1574800341426" duration="5873000" />
       <workItem from="1574844627492" duration="19162000" />
-      <workItem from="1574879992246" duration="10074000" />
+      <workItem from="1574879992246" duration="10985000" />
+      <workItem from="1574933807059" duration="21484000" />
+      <workItem from="1574964143774" duration="1929000" />
     </task>
     <servers />
   </component>
@@ -256,18 +268,17 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/src/Controller/BoardController.php</url>
-          <line>133</line>
-          <option name="timeStamp" value="5" />
+          <url>file://$PROJECT_DIR$/src/Controller/TaskController.php</url>
+          <line>48</line>
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
       <configuration name="router.php">
-        <watch expression="$this-&gt;userRepository-&gt;find($member)" />
-        <watch expression="$users[0]" language="PHP" />
-        <watch expression="$request-&gt;request-&gt;get('_token')" />
-        <watch expression="'delete'.$member-&gt;getId()" />
+        <watch expression="$taskRepository-&gt;findBy(['board' =&gt; $boardId-&gt;getId()])" language="PHP" />
+        <watch expression="$boardId-&gt;getId()" language="PHP" />
+        <watch expression="$data-&gt;" language="PHP" />
       </configuration>
     </watches-manager>
   </component>

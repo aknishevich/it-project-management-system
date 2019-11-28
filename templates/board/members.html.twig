@@ -9,6 +9,7 @@
     {{ form_start(membersForm) }}
         {{ form_widget(membersForm) }}
         <button class="btn btn-success">Add member</button>
+        <a href="{{ path('board_show', {id: board.id}) }}">Back to board</a>
     {{ form_end(membersForm) }}
 
 {% endblock %}

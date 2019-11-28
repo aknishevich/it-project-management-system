@@ -1,5 +1,4 @@
-<a onclick="removeMember(this)"
+<a onclick="removeMember(this)" href="" class="float-right" title="Remove member from this board"
    data-ajax-params='{"_method": "DELETE", "_token": "{{ csrf_token('delete' ~ board.id ~ member.id) }}"}'
    data-ajax-url="{{ path('member_delete', {id: board.id, memberId: member.id}) }}"
-   data-ajax-replace-id="members"
->Remove member</a>
+   data-ajax-replace-id="members"><i class="fas fa-user-minus"></i></a>

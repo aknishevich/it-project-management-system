@@ -2,48 +2,88 @@
 
 namespace App\Controller;
 
+use App\Entity\Board;
 use App\Entity\Task;
+use App\Entity\User;
 use App\Form\TaskType;
+use App\Repository\ColumnRepository;
 use App\Repository\TaskRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/task")
+ * @Route("/board/{board}/task")
  */
 class TaskController extends AbstractController
 {
+    private $userRepository;
+    private $columnRepository;
+    private $taskRepository;
+
+    public function __construct(UserRepository $userRepository, ColumnRepository $columnRepository, TaskRepository $taskRepository)
+    {
+        $this->userRepository = $userRepository;
+        $this->columnRepository = $columnRepository;
+        $this->taskRepository = $taskRepository;
+    }
+
     /**
      * @Route("/", name="task_index", methods={"GET"})
      */
-    public function index(TaskRepository $taskRepository): Response
+    public function index(Board $board, TaskRepository $taskRepository): Response
     {
         return $this->render('task/index.html.twig', [
-            'tasks' => $taskRepository->findAll(),
+            'tasks' => $this->taskRepository->findBy(['board' => $board->getId()]),
+            'board' => $board
         ]);
     }
 
     /**
      * @Route("/new", name="task_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Board $board, Request $request): Response
     {
-        $task = new Task();
-        $form = $this->createForm(TaskType::class, $task);
+        $form = $this->createForm(TaskType::class,null, [
+            'board' => $board,
+            'action' => $this->generateUrl('task_new', [
+                'board' => $board->getId()
+            ])
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+            $task = new Task();
+
+            if (($assignee = $this->userRepository->find($data['assignee'])) && $assignee->isBoardAvailable($board)) {
+                $task->setAssignee($assignee);
+            }
+
+            $task->setTitle($data['title']);
+            $task->setDescription($data['description']);
+            if (($currentUser = $this->getUser()) && $currentUser instanceof User) {
+                $task->setReporter($currentUser);
+            }
+
+            $task->setBoard($board);
+            if ($this->columnRepository->findBy(['id' => $data['status'], 'board' => $board->getId()])) {
+                $task->setStatus($data['status']);
+            }
+
+            $task->setEstimate($data['estimate']);
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($task);
             $entityManager->flush();
 
-            return $this->redirectToRoute('task_index');
+            return $this->redirectToRoute('board_show', ['id' => $board->getId()]);
         }
 
-        return $this->render('task/new.html.twig', [
-            'task' => $task,
+        return $this->render('task/_form.html.twig', [
+            'board' => $board,
             'form' => $form->createView(),
         ]);
     }
@@ -51,29 +91,37 @@ class TaskController extends AbstractController
     /**
      * @Route("/{id}", name="task_show", methods={"GET"})
      */
-    public function show(Task $task): Response
+    public function show(Board $board, Task $task): Response
     {
         return $this->render('task/show.html.twig', [
             'task' => $task,
+            'board' => $board
         ]);
     }
 
     /**
      * @Route("/{id}/edit", name="task_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Task $task): Response
+    public function edit(Board $board, Request $request, Task $task): Response
     {
-        $form = $this->createForm(TaskType::class, $task);
+        $form = $this->createForm(TaskType::class,$task, [
+            'board' => $board,
+            'action' => $this->generateUrl('task_edit', [
+                'board' => $board->getId(),
+                'id' => $task->getId()
+            ])
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('task_index');
+            return $this->redirectToRoute('board_show', ['id' => $board->getId()]);
         }
 
-        return $this->render('task/edit.html.twig', [
+        return $this->render('task/_form.html.twig', [
             'task' => $task,
+            'board' => $board,
             'form' => $form->createView(),
         ]);
     }
@@ -81,7 +129,7 @@ class TaskController extends AbstractController
     /**
      * @Route("/{id}", name="task_delete", methods={"DELETE"})
      */
-    public function delete(Request $request, Task $task): Response
+    public function delete(Board $board, Request $request, Task $task): Response
     {
         if ($this->isCsrfTokenValid('delete'.$task->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();

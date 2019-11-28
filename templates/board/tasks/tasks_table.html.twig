@@ -1,0 +1,43 @@
+<table class="table">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Estimate</th>
+        <th>actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for task in tasks %}
+        <tr>
+            <td>{{ task.id }}</td>
+            <td>{{ task.title }}</td>
+            <td>{{ task.description }}</td>
+            <td>{{ task.status }}</td>
+            <td>{{ task.estimate }}</td>
+            <td>
+                <a href="{{ path('task_show', {'board': board.id, 'id': task.id}) }}">show</a>
+                {#<a href="{{ path('task_edit', {'board': board.id, 'id': task.id}) }}" class="btn btn-primary" data-toggle="modal" data-target="exampleModal">edit<i class="fas fa-edit"></i></a>#}
+                <a onclick="showEditTaskModal(this)" href="javascript:void(0);" title="Edit task"
+                   data-ajax-url="{{ path('task_edit', {'board': board.id, 'id': task.id}) }}"
+                   data-ajax-replace-id="modal-body"
+                   data-modal-title="Edit task"
+                   data-modal-button="Update"
+                ><i class="fas fa-edit"></i></a>
+            </td>
+        </tr>
+    {% else %}
+        <tr>
+            <td colspan="6">no records found</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<a onclick="createEditTaskModal(this)" href="javascript:void(0);" title="Create task"
+   data-ajax-url="{{ path('task_new', {'board': board.id}) }}"
+   data-ajax-replace-id="modal-body"
+   data-modal-title="Create task"
+   data-modal-button="Create"
+>Create task<i class="fas fa-plus"></i></a>
