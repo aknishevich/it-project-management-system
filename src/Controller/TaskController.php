@@ -33,7 +33,7 @@ class TaskController extends AbstractController
     /**
      * @Route("/", name="task_index", methods={"GET"})
      */
-    public function index(Board $board, TaskRepository $taskRepository): Response
+    public function index(Board $board): Response
     {
         return $this->render('task/index.html.twig', [
             'tasks' => $this->taskRepository->findBy(['board' => $board->getId()]),

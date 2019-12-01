@@ -70,11 +70,18 @@ class User implements UserInterface
      */
     private $password;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\LoggedTime", mappedBy="user", orphanRemoval=true)
+     */
+    private $loggedTime;
+
+
     public function __construct()
     {
         $this->boards = new ArrayCollection();
         $this->ownBoards = new ArrayCollection();
         $this->reportedTasks = new ArrayCollection();
+        $this->loggedTime = new ArrayCollection();
     }
 
     public function __toString()
@@ -278,5 +285,36 @@ class User implements UserInterface
     public function isAuthor(Board $board)
     {
         return in_array($board, $this->ownBoards->toArray());
+    }
+
+    /**
+     * @return Collection|LoggedTime[]
+     */
+    public function getLoggedTime(): Collection
+    {
+        return $this->loggedTime;
+    }
+
+    public function addLoggedTime(LoggedTime $loggedTime): self
+    {
+        if (!$this->loggedTime->contains($loggedTime)) {
+            $this->loggedTime[] = $loggedTime;
+            $loggedTime->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLoggedTime(LoggedTime $loggedTime): self
+    {
+        if ($this->loggedTime->contains($loggedTime)) {
+            $this->loggedTime->removeElement($loggedTime);
+            // set the owning side to null (unless already changed)
+            if ($loggedTime->getUser() === $this) {
+                $loggedTime->setUser(null);
+            }
+        }
+
+        return $this;
     }
 }

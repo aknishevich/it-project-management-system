@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -58,6 +60,16 @@ class Task
      * @ORM\Column(type="integer", nullable=true)
      */
     private $estimate;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\LoggedTime", mappedBy="task", orphanRemoval=true)
+     */
+    private $loggedTime;
+
+    public function __construct()
+    {
+        $this->loggedTime = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -158,6 +170,37 @@ class Task
     public function setEstimate(?int $estimate): self
     {
         $this->estimate = $estimate;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|LoggedTime[]
+     */
+    public function getLoggedTime(): Collection
+    {
+        return $this->loggedTime;
+    }
+
+    public function addLoggedTime(LoggedTime $loggedTime): self
+    {
+        if (!$this->loggedTime->contains($loggedTime)) {
+            $this->loggedTime[] = $loggedTime;
+            $loggedTime->setTask($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLoggedTime(LoggedTime $loggedTime): self
+    {
+        if ($this->loggedTime->contains($loggedTime)) {
+            $this->loggedTime->removeElement($loggedTime);
+            // set the owning side to null (unless already changed)
+            if ($loggedTime->getTask() === $this) {
+                $loggedTime->setTask(null);
+            }
+        }
 
         return $this;
     }
