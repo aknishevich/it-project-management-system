@@ -84,6 +84,7 @@ class TaskController extends AbstractController
 
         return $this->render('task/_form.html.twig', [
             'board' => $board,
+            'members' => $board->getMembers()->toArray(),
             'form' => $form->createView(),
         ]);
     }
@@ -104,7 +105,7 @@ class TaskController extends AbstractController
      */
     public function edit(Board $board, Request $request, Task $task): Response
     {
-        $form = $this->createForm(TaskType::class,$task, [
+        $form = $this->createForm(TaskType::class, $task, [
             'board' => $board,
             'action' => $this->generateUrl('task_edit', [
                 'board' => $board->getId(),

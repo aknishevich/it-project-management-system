@@ -38,7 +38,7 @@ class Task
     /**
      * @var User|null
      * @ORM\ManyToOne(targetEntity="User", inversedBy="assignedTasks")
-     * @ORM\JoinColumn(name="assigned_user_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="assigned_user_id", referencedColumnName="id", nullable=true)
      */
     private $assignee;
 
