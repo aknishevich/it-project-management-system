@@ -6,3 +6,11 @@
     transition: .3s;
     transform: scale(1.03);
 }
+.board-column-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+.column {
+    max-width: 20%;
+    min-width: 150px;
+}

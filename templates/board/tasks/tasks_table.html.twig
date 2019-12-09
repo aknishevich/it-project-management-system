@@ -1,8 +1,23 @@
-<div class="row">
-    {% for task in tasks %}
-        <div class="col">
-            <p><strong>{{ task.title }}</strong></p>
-            <p>Estimate: <strong>{{ task.estimate }}</strong></p>
+<div class="row board-column-wrapper">
+    {% for column in board.columns %}
+        <div class="column col border rounded mw-20 p-3">
+            <h5 class="text-center">{{ column }}</h5>
+            {% for task in tasks %}
+                {% if task.status == column %}
+                    <div class="border rounded mw-20 p-3">
+                        <p>
+                            <strong>{{ task.title }}</strong>
+                            <a onclick="showEditTaskModal(this)" href="javascript:void(0);" title="Edit task"
+                               data-ajax-url="{{ path('task_edit', {'board': board.id, 'id': task.id}) }}"
+                               data-ajax-replace-id="modal-body"
+                               data-modal-title="Edit task"
+                               data-modal-button="Update"
+                            ><i class="fas fa-edit"></i></a>
+                        </p>
+                        <p>Estimate: <strong>{{ task.estimate }}</strong></p>
+                    </div>
+                {% endif %}
+            {% endfor %}
         </div>
     {% else %}
         <h4>No tasks on this board</h4>
@@ -12,5 +27,4 @@
    data-ajax-url="{{ path('task_new', {'board': board.id}) }}"
    data-ajax-replace-id="modal-body"
    data-modal-title="Create task"
-   data-modal-button="Create"
->Create task<i class="fas fa-plus"></i></a>
+   data-modal-button="Create">Create task<i class="fas fa-plus"></i></a>

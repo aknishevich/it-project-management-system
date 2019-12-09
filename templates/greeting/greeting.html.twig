@@ -7,6 +7,5 @@
 
     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
         <p>Hello, {% if app.user.name is defined %}{{ app.user.name }}{% endif %}</p>
-        {% if searchUser is defined %}<p>The user you searched {{ searchUser }}</p>{% endif %}
     {% endif %}
 {% endblock %}

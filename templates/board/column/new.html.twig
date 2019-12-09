@@ -6,4 +6,5 @@
     <h1>Create new column on "{{ board.name }}" board</h1>
 
     {{ include('board/column/_form.html.twig', {'button_label': 'Create'}) }}
+    <a href="{{ path('board_show', {'id': board.id}) }}">Back to board</a>
 {% endblock %}

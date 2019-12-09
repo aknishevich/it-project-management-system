@@ -23,9 +23,8 @@ class GreetingController extends AbstractController
     /**
      * @Route("/greeting", name="greeting")
      */
-    public function greeting(UserRepository $userRepository)
+    public function greeting()
     {
-        $userName = $userRepository->findOneBy(['email' => 'aknishevich@gmail.com'])->getName();
-        return $this->render('greeting/greeting.html.twig', ['searchUser' => $userName]);
+        return $this->render('greeting/greeting.html.twig', []);
     }
 }

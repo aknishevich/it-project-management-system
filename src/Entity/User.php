@@ -268,6 +268,26 @@ class User implements UserInterface
     }
 
     /**
+     * Gets all tasks which are available for this user
+     * included tasks from own boards and boards
+     * where this user marked as a member
+     * @return Collection|null
+     */
+    public function getAvailableTasks(): ?Collection
+    {
+        $availableBoards = $this->getAvailableBoards();
+        $availableTasks = new ArrayCollection();
+
+        foreach ($availableBoards as $board) {
+            foreach ($board->getTasks() as $task) {
+                $availableTasks->add($task);
+            }
+        }
+
+        return $availableTasks;
+    }
+
+    /**
      * Checks if the user have permissions to view this board
      * @param Board $board
      * @return bool

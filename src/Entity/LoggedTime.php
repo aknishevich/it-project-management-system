@@ -34,7 +34,7 @@ class LoggedTime
     private $time;
 
     /**
-     * @ORM\Column(type="date_immutable")
+     * @ORM\Column(type="date")
      */
     private $date;
 
@@ -79,12 +79,12 @@ class LoggedTime
         return $this;
     }
 
-    public function getDate(): ?\DateTimeImmutable
+    public function getDate(): ?\DateTime
     {
         return $this->date;
     }
 
-    public function setDate(\DateTimeImmutable $date): self
+    public function setDate(\DateTime $date): self
     {
         $this->date = $date;
 
