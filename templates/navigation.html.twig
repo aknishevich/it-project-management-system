@@ -7,14 +7,17 @@
 
         <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav mr-auto">
+                <li {% if app.request.get('_route') == 'burndown_index' %} class="nav-item active"{% else %}class="nav-item"{% endif %}>
+                    <a class="nav-link" href="{{ path('burndown_index') }}">Burndown chart</a>
+                </li>
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                     <li {% if app.request.get('_route') == 'greeting' %} class="nav-item active"{% else %}class="nav-item"{% endif %}>
                         <a class="nav-link" href="{{ path('greeting') }}">Greeting</a>
                     </li>
-                    <li class="nav-item">
+                    <li {% if app.request.get('_route') == 'board_index' %} class="nav-item active"{% else %}class="nav-item"{% endif %}>
                         <a class="nav-link" href="{{ path('board_index') }}">Boards</a>
                     </li>
-                    <li class="nav-item">
+                    <li {% if app.request.get('_route') == 'log_time' %} class="nav-item active"{% else %}class="nav-item"{% endif %}>
                         <a class="nav-link" href="{{ path('log_time') }}">Log time</a>
                     </li>
                 {% endif %}

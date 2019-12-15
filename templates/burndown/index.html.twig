@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Build burndown chart{% endblock %}
+{% block assets %}
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="/assets/scripts/BurnDown.js"></script>
+{% endblock %}
+
+{% block body %}
+    <div id="burnDownForm">
+        <h2>Generate burn down chart</h2>
+        <p>To calculate your burn down chart enter the next information</p>
+        <form action="">
+            <div class="form-group">
+                <label for="storyPoints">Story points planned</label>
+                <input type="number" id="storyPoints" class="form-control col-md-4">
+            </div>
+            <div class="form-group">
+                <label for="">Sprint duration</label>
+                <input type="number" class="form-control col-md-4" id="sprintDuration">
+            </div>
+            <div id="daysBlock">
+            </div>
+            <input type="button" id="calculate" value="Generate" class="btn btn-primary mt-3">
+        </form>
+    </div>
+    <div id="burndown" style="display: none;">
+        <div id="linechart_material"></div>
+        <input type="button" id="change" value="Change" class="btn btn-success mt-3">
+    </div>
+{% endblock %}

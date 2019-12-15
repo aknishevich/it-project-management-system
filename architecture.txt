@@ -1,0 +1,13 @@
+Sprint:
+    - id;
+    - title [string];
+    - startDate [date];
+    - endDate [date];
+    - board [Board];
+    - definitionOfDone [columns[]];
+
+tasksStatusHistory:
+    - date;
+    - changedTask;
+    - changedField;
+    - 

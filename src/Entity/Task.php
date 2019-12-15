@@ -75,6 +75,16 @@ class Task
         return $this->title;
     }
 
+    public function asArray()
+    {
+        $data = [];
+        foreach ($this as $k => $v) {
+            $data[$k] = $v;
+        }
+
+        return $data;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

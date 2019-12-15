@@ -2,25 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3e49accb-0d6e-41b3-b85b-7e5ce2f36b79" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Form/LoggedTimeFormType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/user/log_time/_form.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/user/log_time/log.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/user/log_time/time.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/scripts/BurnDown.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/BurnDownChartController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/burndown/index.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/GreetingController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GreetingController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/LoggedTime.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/LoggedTime.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Task.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Task.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/ColumnType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/ColumnType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/board/column/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/board/column/new.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/board/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/board/show.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/board/tasks/tasks_table.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/board/tasks/tasks_table.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/greeting/greeting.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/greeting/greeting.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/navigation.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/navigation.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/task/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/task/_form.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/security/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/security/login.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -57,13 +48,15 @@
         <option value="virtual-table" />
       </set>
     </option>
-    <expand>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="data.db" type="feb32156:DbDataSourceImpl" />
-      </path>
-    </expand>
+    <expand />
     <select />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -220,12 +213,12 @@
           <expand>
             <path>
               <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@414c741c" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@97094396" type="7427dc5b:ServiceModel$ServiceGroupNode" />
             </path>
             <path>
               <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@414c741c" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@1c033a02" type="9fbbdea:ServiceModel$ServiceNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@97094396" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@653a96d8" type="9fbbdea:ServiceModel$ServiceNode" />
             </path>
           </expand>
           <select />
@@ -276,6 +269,16 @@
       <workItem from="1575101329571" duration="3983000" />
       <workItem from="1575188683212" duration="14925000" />
       <workItem from="1575821898032" duration="3155000" />
+      <workItem from="1575914455792" duration="1763000" />
+      <workItem from="1575961701891" duration="1962000" />
+      <workItem from="1575970411418" duration="1216000" />
+      <workItem from="1575992843322" duration="1889000" />
+      <workItem from="1576092038270" duration="1133000" />
+      <workItem from="1576171507083" duration="833000" />
+      <workItem from="1576179263136" duration="1471000" />
+      <workItem from="1576306979413" duration="12978000" />
+      <workItem from="1576420724224" duration="279000" />
+      <workItem from="1576421626136" duration="9654000" />
     </task>
     <servers />
   </component>
@@ -314,36 +317,17 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/src/Controller/TaskController.php</url>
-          <line>48</line>
-          <option name="timeStamp" value="3" />
+          <line>107</line>
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
       <configuration name="router.php">
-        <watch expression="$board-&gt;getMembers()-&gt;toArray()" language="PHP" />
-        <watch expression="$timeForm-&gt;isSubmitted()" />
-        <watch expression="$user-&gt;getLoggedTime()" />
+        <watch expression="new JsonResponse($task)" language="PHP" />
+        <watch expression="$task" language="PHP" />
+        <watch expression="$this-&gt;getErrors(true)" />
       </configuration>
     </watches-manager>
-  </component>
-  <component name="debuggerHistoryManager">
-    <expressions id="watch">
-      <expression>
-        <expression-string>$board-&gt;getMembers()-&gt;toArray()</expression-string>
-        <language-id>PHP</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>$board-&gt;getMembers()</expression-string>
-        <language-id>PHP</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>$board-&gt;members</expression-string>
-        <language-id>PHP</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-    </expressions>
   </component>
 </project>
