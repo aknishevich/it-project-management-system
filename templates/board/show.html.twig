@@ -25,10 +25,10 @@
         </li>
     </ul>
     <div class="tab-content">
-        <a href="{{ path('column_new', {'board': board.id}) }}">Add column<i class="fas fa-plus"></i></a>
         <div id="tasks" class="container tab-pane active"><br>
             <div class="container">
                 <div class="row">
+                    <a href="{{ path('column_new', {'board': board.id}) }}" class="mb-3">Add column<i class="fas fa-plus"></i></a>
                     <div class="col-12">
                         {{ include('board/tasks/tasks_table.html.twig') }}
                     </div>
